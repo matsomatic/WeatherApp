@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "9589EBD1-0579-4E68-8D5D-2DF68C08A492"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "016B6C9A-534B-4664-8CFF-2234CA832388"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherAppTests/WeatherAppTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "testParsing()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "016B6C9A-534B-4664-8CFF-2234CA832388 - 1ec25621f17b6504"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAppTests.ForecastTests.testParsing() throws -&gt; ()"
+                  moduleName = "WeatherAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherAppTests/WeatherAppTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1152">
+               </Location>
+               <Location
+                  uuid = "016B6C9A-534B-4664-8CFF-2234CA832388 - 1ec25621f17b6527"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WeatherAppTests.ForecastTests.testParsing() throws -&gt; ()"
+                  moduleName = "WeatherAppTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherAppTests/WeatherAppTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "1396">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C9651B0-6065-44A4-9D6A-3CE907A680EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeatherApp/Model/CLGeocoder+Geocoder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "findLocationForAddress(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6C9651B0-6065-44A4-9D6A-3CE907A680EE - ff222cfa96379a07"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;(latitude: Swift.Optional&lt;Swift.Double&gt;, longitude: Swift.Optional&lt;Swift.Double&gt;), Swift.Never&gt;) -&gt; () in __C.CLGeocoder.findLocationForAddress(Swift.String) async -&gt; (latitude: Swift.Optional&lt;Swift.Double&gt;, longitude: Swift.Optional&lt;Swift.Double&gt;)"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherApp/Model/CLGeocoder+Geocoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "6C9651B0-6065-44A4-9D6A-3CE907A680EE - ff222cfa96379a07"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;(latitude: Swift.Optional&lt;Swift.Double&gt;, longitude: Swift.Optional&lt;Swift.Double&gt;), Swift.Never&gt;) -&gt; () in __C.CLGeocoder.findLocationForAddress(Swift.String) async -&gt; (latitude: Swift.Optional&lt;Swift.Double&gt;, longitude: Swift.Optional&lt;Swift.Double&gt;)"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherApp/Model/CLGeocoder+Geocoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "6C9651B0-6065-44A4-9D6A-3CE907A680EE - ff222cfa96379a07"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Array&lt;__C.CLPlacemark&gt;&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 (Swift.CheckedContinuation&lt;(latitude: Swift.Optional&lt;Swift.Double&gt;, longitude: Swift.Optional&lt;Swift.Double&gt;), Swift.Never&gt;) -&gt; () in __C.CLGeocoder.findLocationForAddress(Swift.String) async -&gt; (latitude: Swift.Optional&lt;Swift.Double&gt;, longitude: Swift.Optional&lt;Swift.Double&gt;)"
+                  moduleName = "WeatherApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherApp/Model/CLGeocoder+Geocoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "516">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
