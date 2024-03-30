@@ -18,7 +18,9 @@ class WeatherViewModel {
     }
     
     var searchString: String = ""
+    private(set) var lastSearched: String = ""
     var state: WeatherState = .empty
+    var selectedDayIndex = 0
     
     let geoLookup: Geocoder
     
@@ -31,6 +33,7 @@ class WeatherViewModel {
     func performSearch() {
         state = .loading
         Task {
+            lastSearched = searchString
             let location = await geoLookup.findLocationForAddress(searchString)
             guard let longitude = location.longitude, let latitude = location.latitude else {
                 state = .error

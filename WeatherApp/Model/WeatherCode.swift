@@ -15,7 +15,7 @@ enum WeatherCode: Int, Decodable {
     case fog = 45
     case depositingRimeFog = 48
     case drizzleLight = 51
-    case drizzleMderate = 53
+    case drizzleModerate = 53
     case drizzleDense = 55
     case drizzleFreezingLight = 56
     case drizzleFreezingDense = 57
@@ -24,7 +24,7 @@ enum WeatherCode: Int, Decodable {
     case rainHeavy = 65
     case rainFreezingLight = 66
     case rainFreezingHeavy = 67
-    case SnowSlight = 71
+    case snowSlight = 71
     case snowModerate = 73
     case snowHeavy = 75
     case snowGrains = 77

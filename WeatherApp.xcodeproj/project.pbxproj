@@ -26,6 +26,8 @@
 		38B3DE792BB746CA0007DD3E /* Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE782BB746CA0007DD3E /* Geocoder.swift */; };
 		38B3DE7B2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE7A2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift */; };
 		38B3DE7F2BB7507C0007DD3E /* MockGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */; };
+		38B3DE842BB879A70007DD3E /* HourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE832BB879A70007DD3E /* HourlyView.swift */; };
+		38B3DE862BB87AD70007DD3E /* WeatherCode+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE852BB87AD70007DD3E /* WeatherCode+Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		38B3DE782BB746CA0007DD3E /* Geocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geocoder.swift; sourceTree = "<group>"; };
 		38B3DE7A2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLGeocoder+Geocoder.swift"; sourceTree = "<group>"; };
 		38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGeocoder.swift; sourceTree = "<group>"; };
+		38B3DE832BB879A70007DD3E /* HourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyView.swift; sourceTree = "<group>"; };
+		38B3DE852BB87AD70007DD3E /* WeatherCode+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WeatherCode+Image.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				38B3DE3B2BB6F5440007DD3E /* WeatherView.swift */,
+				38B3DE832BB879A70007DD3E /* HourlyView.swift */,
+				38B3DE852BB87AD70007DD3E /* WeatherCode+Image.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38B3DE6B2BB6F9B80007DD3E /* HourlyData.swift in Sources */,
+				38B3DE862BB87AD70007DD3E /* WeatherCode+Image.swift in Sources */,
 				38B3DE6D2BB6FA460007DD3E /* WeatherCode.swift in Sources */,
 				38B3DE3C2BB6F5440007DD3E /* WeatherView.swift in Sources */,
 				38B3DE692BB6F93F0007DD3E /* DailyData.swift in Sources */,
@@ -343,6 +350,7 @@
 				38B3DE7B2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift in Sources */,
 				38B3DE652BB6F6AC0007DD3E /* Forecast.swift in Sources */,
 				38B3DE7F2BB7507C0007DD3E /* MockGeocoder.swift in Sources */,
+				38B3DE842BB879A70007DD3E /* HourlyView.swift in Sources */,
 				38B3DE792BB746CA0007DD3E /* Geocoder.swift in Sources */,
 				38B3DE3A2BB6F5440007DD3E /* WeatherApp.swift in Sources */,
 			);

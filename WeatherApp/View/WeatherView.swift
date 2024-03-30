@@ -47,16 +47,40 @@ func getBody(viewModel: WeatherViewModel) -> some View {
         case .loading:
             Spacer()
             ProgressView()
-            Text("Loading")
+            Text(String("Loading"))
             Spacer()
-        case .available:
-            Text("Data!")
+        case .available(let forecast):
+            VStack {
+                Text(String("Weather Forecast\n\(viewModel.lastSearched)"))
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                ScrollView(.horizontal) {
+                    HStack {
+                        let dailyData = forecast.dailyData[viewModel.selectedDayIndex]
+                        ForEach(dailyData.hourlyData) { hour in
+                            let isNight = hour.time.compare(dailyData.sunrise) == .orderedAscending || hour.time.compare(dailyData.sunset) == .orderedDescending
+                            HourlyView(
+                                temperature: hour.temperature,
+                                temperatureUnit: forecast.hourlyUnits.temperature,
+                                weatherCode: .clear,
+                                windDirection: hour.windDirection,
+                                windSpeed: hour.windSpeed,
+                                windSpeedUnit: forecast.hourlyUnits.windSpeed,
+                                time: hour.time,
+                                timeZone: forecast.timezoneAbbreviation,
+                                isNight: isNight)
+                        }
+                    }
+                }
+                
+            }
+            
         case .error:
-            Text("Error")
+            Text(String("Error"))
         }
     }
 }
 
 #Preview {
-    WeatherView(viewModel: WeatherViewModel(geoLookup: CLGeocoder()))
+    WeatherView(viewModel: WeatherViewModel(geoLookup: MockGeocoder()))
 }

@@ -7,10 +7,11 @@
 
 import Foundation
 
-struct HourlyData {
+struct HourlyData: Identifiable {
+    var id: Date { time }
     let time: Date
     let weatherCode: WeatherCode
-    let temperature: Float
-    let windSpeed: Float
+    let temperature: Double
+    let windSpeed: Double
     let windDirection: Int
 }

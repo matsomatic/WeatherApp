@@ -11,9 +11,9 @@ struct Forecast: Decodable {
     
     private struct HourlyDataContainer: Decodable {
         let time: [String]
-        let temperature: [Float]
+        let temperature: [Double]
         let weatherCode: [WeatherCode]
-        let windSpeed: [Float]
+        let windSpeed: [Double]
         let windDirection: [Int]
         
         enum CodingKeys: String, CodingKey {
