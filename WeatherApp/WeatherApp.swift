@@ -12,7 +12,7 @@ import CoreLocation
 struct WeatherApp: App {
     var body: some Scene {
         WindowGroup {
-            WeatherView(viewModel:WeatherViewModel(geoLookup: MockGeocoder()))
+            WeatherView(viewModel:WeatherViewModel(geoLookup: CLGeocoder(), dispatcher: URLSession.shared))
         }
     }
 }

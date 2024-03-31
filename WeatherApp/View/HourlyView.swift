@@ -9,10 +9,6 @@ import SwiftUI
 
 struct HourlyView: View {
     
-    private typealias ColorValues = (red: Double, green: Double, blue: Double)
-    
-    
-   
     let temperature: Double
     let temperatureUnit: String
     let weatherCode: WeatherCode
@@ -20,54 +16,33 @@ struct HourlyView: View {
     let windSpeed: Double
     let windSpeedUnit: String
     let time: Date
-    var timeZone: String {
-        didSet {
-            hourFormatter.timeZone = TimeZone(abbreviation: timeZone)
-        }
-    }
+    var timeZone: String
     let isNight: Bool
     
-    private let cold = (red: 0.784, green: 0.831, blue: 0.969)
-    private let medium = (red: 0.969, green: 0.898, blue: 0.784)
-    private let hot = (red: 0.969, green: 0.667, blue: 0.667)
-
-    private let hourFormatter = {
-       let result = DateFormatter()
+    let hourFormatter = { let result = DateFormatter()
         result.dateFormat = "HH:mm"
+        result.timeZone = TimeZone(abbreviation: "GMT")
         return result
     }()
     
     var body: some View {
         VStack(alignment: .center) {
             Text(hourFormatter.string(from: time))
-            weatherCode.image(night: false)
+            weatherCode.image(night: isNight)
             Text(String("\(temperature)\(temperatureUnit)"))
                 .font(.title)
-            Text("↑")
-                .rotationEffect(.degrees(Double(windDirection)))
+            HStack {
+                Spacer()
+                Image(systemName: "wind")
+                Text("↑")
+                    .rotationEffect(.degrees(Double(windDirection)))
+                Spacer()
+            }
+                
             Text(String("\(windSpeed) \(windSpeedUnit)"))
         }
         .padding()
-        .background(temperatureColor())
-    }
-    
-    func temperatureColor() -> Color {
-        let start: ColorValues
-        let end: ColorValues
-        let progress: Double
-        if temperature > 20.0 {
-            start = medium
-            end = hot
-            progress = min(((temperature - 20.0)/20.0), 1.0)
-        } else {
-            start = cold
-            end = medium
-            progress = max((temperature/20.0), 0.0)
-        }
-        let red = start.red + (end.red - start.red) * progress
-        let green = start.green + (end.green - start.green) * progress
-        let blue = start.blue + (end.blue - start.blue) * progress
-        return Color(red: red, green: green, blue: blue)
+        .background(Color.temperatureColor(temperature: temperature))
     }
 }
 

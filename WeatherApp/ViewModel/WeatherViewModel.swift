@@ -22,12 +22,62 @@ class WeatherViewModel {
     var state: WeatherState = .empty
     var selectedDayIndex = 0
     
-    let geoLookup: Geocoder
+    var selectedHour: Date? {
+        didSet {
+            if case .available(let forecast) = state {
+                if let selectedHour, let selectedDay = forecast.dailyData.last(where: { day in
+                    day.day.compare(selectedHour) != .orderedDescending
+                }) {
+                    if let selectedIndex = forecast.dailyData.firstIndex(where: { day in
+                        day == selectedDay
+                    }){
+                        if selectedIndex != selectedDayIndex {
+                            selectedDayIndex = selectedIndex
+                        }
+                    }
+                }
+            }
+        }
+    }
     
-    init(searchString: String = "", state: WeatherState = .empty, geoLookup: Geocoder) {
+    let geoLookup: Geocoder
+    let dispatcher: RequestDispatcher
+    
+    private let hourFormatter = {let result = DateFormatter()
+        result.dateFormat = "HH:mm"
+        result.timeZone = TimeZone(abbreviation: "GMT")
+        return result } ()
+    
+    private let dayFormatter = {let result = DateFormatter()
+        result.dateFormat = "EEE dd MMM"
+        result.timeZone = TimeZone(abbreviation: "GMT")
+        return result } ()
+    
+    init(searchString: String = "", state: WeatherState = .empty, geoLookup: Geocoder, dispatcher: RequestDispatcher) {
         self.searchString = searchString
         self.state = state
         self.geoLookup = geoLookup
+        self.dispatcher = dispatcher
+    }
+    
+    var allHours: [HourlyData] {
+        if case .available(let forecast) = state {
+            var result = [HourlyData]()
+            for day in forecast.dailyData {
+                result.append(contentsOf: day.hourlyData)
+            }
+            return result
+        } else {
+            return []
+        }
+    }
+    
+    func hourStringFor(_ date: Date) -> String {
+        hourFormatter.string(from: date)
+    }
+    
+    func dayStringFor(_ date: Date) -> String {
+        dayFormatter.string(from: date)
     }
     
     func performSearch() {
@@ -40,13 +90,16 @@ class WeatherViewModel {
                 return
             }
             
-            //Replace with API call
-            
-            let dataUrl = Bundle.main.url(forResource: "DummyData", withExtension: "json")!
-            let data = try Data(contentsOf: dataUrl)
-            let parser = JSONDecoder()
-            let forecast = try parser.decode(Forecast.self, from: data)
-            state = .available(forecast: forecast)
+            let request = ForecastRequest(latitude: latitude,
+                                          longitude: longitude,
+                                          dispatcher: dispatcher)
+            let result = await request.process()
+            switch result {
+            case .success(let forecast):
+                state = .available(forecast: forecast)
+            case .failure:
+                state = .error
+            }
         }
     }
 }

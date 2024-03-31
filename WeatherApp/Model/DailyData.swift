@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct DailyData {
+struct DailyData : Equatable {
+    static func == (lhs: DailyData, rhs: DailyData) -> Bool {
+        lhs.day == rhs.day
+    }
+    
     let day: Date
     let sunrise: Date
     let sunset: Date

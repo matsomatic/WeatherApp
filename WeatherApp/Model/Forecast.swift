@@ -52,11 +52,11 @@ struct Forecast: Decodable {
         var days = [DailyData]()
         let numberOfDays = dailyValues.sunrise.count
         let dayFormat = DateFormatter()
-        dayFormat.timeZone = .init(abbreviation: self.timezoneAbbreviation)
+        dayFormat.timeZone = .init(abbreviation: "UTC")
         dayFormat.dateFormat = "yyyy-MM-dd"
         
         let timeOfDayFormat = DateFormatter()
-        timeOfDayFormat.timeZone = .init(abbreviation: self.timezoneAbbreviation)
+        timeOfDayFormat.timeZone = .init(abbreviation: "UTC")
         timeOfDayFormat.dateFormat = "yyyy-MM-dd'T'HH:mm"
         
         for index in 0 ..< numberOfDays {
