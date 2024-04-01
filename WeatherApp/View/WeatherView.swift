@@ -11,7 +11,7 @@ import SwiftUI
 struct WeatherView: View {
     let viewModel: WeatherViewModel
     @State private var scrollHour: Date?
-    
+
     var body: some View {
         @Bindable var viewModel = viewModel
         VStack {
@@ -43,7 +43,7 @@ struct WeatherView: View {
         }
         .padding()
     }
-    
+
     @ViewBuilder
     func getDetialView() -> some View {
         VStack(alignment: .center) {
@@ -140,14 +140,14 @@ struct WeatherView: View {
                         viewModel.selectedHour = newValue
                     }
                 }
-                
+
             case .error(let error):
                 Spacer()
                 if case .geoLookupIssue = error {
                     Text(String("❌\n Could not find location. Try specifying a place name and country, e.g. \"London, UK\""))
                         .font(.title)
                         .multilineTextAlignment(.center)
-                    
+
                 } else {
                     Text(String("❌\n Could not load forecast. Try again later."))
                         .font(.title)
@@ -157,7 +157,7 @@ struct WeatherView: View {
             }
         }
     }
-    
+
     func getTimeTextFor(date: Date, forecast: Forecast) -> String {
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "HH:mm"
@@ -201,4 +201,3 @@ struct WeatherView: View {
     }
     return WeatherView(viewModel: WeatherViewModel(state: .error(error: .forecastIssue), geoLookup: PreviewGeocoder(), dispatcher: URLSession.shared))
 }
-

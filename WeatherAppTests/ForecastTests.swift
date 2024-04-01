@@ -10,7 +10,6 @@ import InlineSnapshotTesting
 import XCTest
 
 final class ForecastTests: XCTestCase {
-    
     func testParsing() throws {
         let dataUrl = Bundle(for: ForecastTests.self).url(forResource: "MinimalData", withExtension: "json")!
         let data = try Data(contentsOf: dataUrl)

@@ -12,7 +12,7 @@ class MockDispatcher: RequestDispatcher {
     enum MockDispatcherError: Error {
         case unintitalisedMock
     }
-    
+
     var result: Result<Data, Error> = .failure(MockDispatcherError.unintitalisedMock)
     var dispatchedRequest: Request?
     func dispatch(request: Request) async -> Result<Data, Error> {

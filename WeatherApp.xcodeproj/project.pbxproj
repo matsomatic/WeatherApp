@@ -140,10 +140,10 @@
 		386B7C6F2BBB271C0047CE6E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				38B3DE642BB6F6AC0007DD3E /* Forecast.swift */,
-				38B3DE662BB6F7970007DD3E /* Units.swift */,
 				38B3DE682BB6F93F0007DD3E /* DailyData.swift */,
+				38B3DE642BB6F6AC0007DD3E /* Forecast.swift */,
 				38B3DE6A2BB6F9B80007DD3E /* HourlyData.swift */,
+				38B3DE662BB6F7970007DD3E /* Units.swift */,
 				38B3DE6C2BB6FA460007DD3E /* WeatherCode.swift */,
 			);
 			path = Data;
@@ -152,8 +152,8 @@
 		386B7C702BBB272B0047CE6E /* Geocoding */ = {
 			isa = PBXGroup;
 			children = (
-				38B3DE782BB746CA0007DD3E /* Geocoder.swift */,
 				38B3DE7A2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift */,
+				38B3DE782BB746CA0007DD3E /* Geocoder.swift */,
 			);
 			path = Geocoding;
 			sourceTree = "<group>";
@@ -206,12 +206,12 @@
 				386B7C6A2BBB1B430047CE6E /* Fixtures */,
 				38B3DE7C2BB750490007DD3E /* Mocks */,
 				38B3DE6E2BB6FE750007DD3E /* Resources */,
+				386B7C792BBB34720047CE6E /* Color+TemperatureTests.swift */,
 				38B3DE4A2BB6F5460007DD3E /* ForecastTests.swift */,
+				386B7C7A2BBB34720047CE6E /* URLSession+RequestDispatcherTests.swift */,
+				386B7C732BBB2E210047CE6E /* WeatherCode+ImageTests.swift */,
 				386B7C6D2BBB1C490047CE6E /* WeatherViewModelTests.swift */,
 				386B7C712BBB2BE20047CE6E /* WeatherViewTests.swift */,
-				386B7C732BBB2E210047CE6E /* WeatherCode+ImageTests.swift */,
-				386B7C792BBB34720047CE6E /* Color+TemperatureTests.swift */,
-				386B7C7A2BBB34720047CE6E /* URLSession+RequestDispatcherTests.swift */,
 			);
 			path = WeatherAppTests;
 			sourceTree = "<group>";
@@ -238,8 +238,8 @@
 		38B3DE722BB72C660007DD3E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				38B3DE3B2BB6F5440007DD3E /* WeatherView.swift */,
 				38B3DE832BB879A70007DD3E /* HourlyView.swift */,
+				38B3DE3B2BB6F5440007DD3E /* WeatherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,8 +255,8 @@
 		38B3DE7C2BB750490007DD3E /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */,
 				3805DC292BBA47F800D6D70B /* MockDispatcher.swift */,
+				38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -264,10 +264,10 @@
 		38B3DE872BB8BB390007DD3E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				38B3DE852BB87AD70007DD3E /* WeatherCode+Image.swift */,
 				38B3DE882BB8BB580007DD3E /* Color+Temperature.swift */,
-				38B3DE8A2BB8CB0C0007DD3E /* View+DismissKeyboard.swift */,
 				38B3DE922BB8FFA00007DD3E /* URLSession+RequestDispatcher.swift */,
+				38B3DE8A2BB8CB0C0007DD3E /* View+DismissKeyboard.swift */,
+				38B3DE852BB87AD70007DD3E /* WeatherCode+Image.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -276,9 +276,9 @@
 			isa = PBXGroup;
 			children = (
 				38B3DE952BB908D50007DD3E /* RequestImplementations */,
-				38B3DE8C2BB8D9E40007DD3E /* RequestDispatcher.swift */,
-				38B3DE8E2BB8D9FF0007DD3E /* Request.swift */,
 				38B3DE902BB8DB740007DD3E /* JsonRequest.swift */,
+				38B3DE8E2BB8D9FF0007DD3E /* Request.swift */,
+				38B3DE8C2BB8D9E40007DD3E /* RequestDispatcher.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

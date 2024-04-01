@@ -20,7 +20,7 @@ extension Forecast {
         parser.dateDecodingStrategy = .iso8601
         return try! parser.decode(Forecast.self, from: data)
     }
-    
+
     static func forecastData(type: ForecastFixtureType = .minimal) -> Data {
         let dataUrl = Bundle(for: ForecastTests.self).url(forResource: type.rawValue, withExtension: "json")!
         return try! Data(contentsOf: dataUrl)

@@ -5,41 +5,40 @@
 //  Created by Mats Trovik on 01/04/2024.
 //
 
-import XCTest
+import SnapshotTesting
 import SwiftUI
 @testable import WeatherApp
-import SnapshotTesting
+import XCTest
 
 final class WeatherViewTests: XCTestCase {
-
     func testEmpty() throws {
         let viewModel = WeatherViewModel(state: .empty, geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         assertSnapshot(of: host, as: .image)
     }
-    
+
     func testErrorGeocoding() throws {
         let viewModel = WeatherViewModel(state: .error(error: .geoLookupIssue), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         assertSnapshot(of: host, as: .image)
     }
-    
+
     func testErrorForecast() throws {
         let viewModel = WeatherViewModel(state: .error(error: .forecastIssue), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         assertSnapshot(of: host, as: .image)
     }
-    
+
     func testLoading() throws {
         let viewModel = WeatherViewModel(state: .loading, geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         assertSnapshot(of: host, as: .image)
     }
-    
+
     func testFullForecast() throws {
         let forecast = Forecast.fixture(type: .full)
         let viewModel = WeatherViewModel(state: .available(forecast: forecast), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
@@ -47,5 +46,4 @@ final class WeatherViewTests: XCTestCase {
         let host = UIHostingController(rootView: view)
         assertSnapshot(of: host, as: .image)
     }
-
 }

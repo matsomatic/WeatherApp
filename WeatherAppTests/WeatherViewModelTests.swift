@@ -30,11 +30,11 @@ final class WeatherViewModelTests: XCTestCase {
     }
     
     func testGeocoderFailure() throws {
-        //Setup
+        // Setup
         geocoder.coordinate = nil
         sut.searchString = "London"
         
-        //Configure expectation
+        // Configure expectation
         let expectation = XCTestExpectation(description: "Should Receive Error")
         @Sendable func observe() {
             withObservationTracking {
@@ -47,11 +47,11 @@ final class WeatherViewModelTests: XCTestCase {
         }
         observe()
         
-        //Execute test
+        // Execute test
         sut.performSearch()
         wait(for: [expectation], timeout: 1)
         
-        //Verify
+        // Verify
         XCTAssertEqual(geocoder.findLocationcalledForAddress, "London")
         
         let state = sut.state
@@ -63,11 +63,11 @@ final class WeatherViewModelTests: XCTestCase {
     }
     
     func testForecastFailure() throws {
-        //Setup
+        // Setup
         geocoder.coordinate = (1.0, 1.0)
         sut.searchString = "London"
         
-        //Configure expectation
+        // Configure expectation
         let expectation = XCTestExpectation(description: "Should Receive Error")
         @Sendable func observe() {
             withObservationTracking {
@@ -118,12 +118,12 @@ final class WeatherViewModelTests: XCTestCase {
     }
 
     func testForecastSuccess() throws {
-        //Setup
+        // Setup
         geocoder.coordinate = (1.0, 1.0)
         dispatcher.result = .success(Forecast.forecastData())
         sut.searchString = "London"
         
-        //Configure expectation
+        // Configure expectation
         let expectation = XCTestExpectation(description: "Should Receive Error")
         @Sendable func observe() {
             withObservationTracking {
@@ -136,11 +136,11 @@ final class WeatherViewModelTests: XCTestCase {
         }
         observe()
         
-        //Execute test
+        // Execute test
         sut.performSearch()
         wait(for: [expectation], timeout: 1)
         
-        //Verify
+        // Verify
         XCTAssertEqual(geocoder.findLocationcalledForAddress, "London")
         assertInlineSnapshot(of: dispatcher.dispatchedRequest?.params, as: .dump) {
             """

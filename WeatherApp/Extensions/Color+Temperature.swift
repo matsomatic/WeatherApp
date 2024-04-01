@@ -13,9 +13,8 @@ extension Color {
     private static let cold = (red: 0.784, green: 0.831, blue: 0.969)
     private static let medium = (red: 0.969, green: 0.898, blue: 0.784)
     private static let hot = (red: 0.969, green: 0.667, blue: 0.667)
-    
+
     private static let midPointTemp = 15.0
-   
 
     static func temperatureColor(temperature: Double) -> Color {
         let start: ColorValues

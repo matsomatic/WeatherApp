@@ -5,10 +5,10 @@
 //  Created by Mats Trovik on 01/04/2024.
 //
 
-import XCTest
-import SwiftUI
 import SnapshotTesting
+import SwiftUI
 @testable import WeatherApp
+import XCTest
 
 final class Color_TemperatureTests: XCTestCase {
     func testColorForTemepratures() {
@@ -17,7 +17,7 @@ final class Color_TemperatureTests: XCTestCase {
                 let temperature = Double(degrees)
                 Rectangle()
                     .fill(Color.temperatureColor(temperature: temperature))
-                    .frame(width: 3,height: 10)
+                    .frame(width: 3, height: 10)
             }
         }
         let host = UIHostingController(rootView: stack)

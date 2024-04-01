@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 class WeatherViewModel {
-    
     enum WeatherViewModelError: Error {
         case geoLookupIssue
         case forecastIssue

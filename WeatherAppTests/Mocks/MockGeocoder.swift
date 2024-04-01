@@ -9,7 +9,6 @@ import Foundation
 @testable import WeatherApp
 
 class MockGeocoder: Geocoder {
-    
     var coordinate: (lat: Double, lon: Double)?
     var findLocationcalledForAddress: String?
     func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) {
