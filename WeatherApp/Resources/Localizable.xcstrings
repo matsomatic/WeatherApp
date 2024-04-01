@@ -1,0 +1,51 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "↑" : {
+
+    },
+    "⬆\nEnter a location and tap the button to get a weather forecast." : {
+
+    },
+    "Get Forecast" : {
+
+    },
+    "Loading" : {
+
+    },
+    "Location" : {
+
+    },
+    "TemperatureFormat%lf%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$.1lf%2$@"
+          }
+        }
+      }
+    },
+    "Weather Forecast\n%@\n(%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather Forecast\n%1$@\n(%2$@)"
+          }
+        }
+      }
+    },
+    "WindSpeedFormat%lf %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$.1lf %2$@"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

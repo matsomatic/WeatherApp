@@ -28,7 +28,7 @@ struct HourlyView: View {
         VStack(alignment: .center) {
             Text(hourFormatter.string(from: time))
             weatherCode.image(night: isNight)
-            Text(String("\(temperature)\(temperatureUnit)"))
+            Text("TemperatureFormat\(temperature)\(temperatureUnit)")
                 .font(.title)
             HStack {
                 Spacer()
@@ -38,7 +38,7 @@ struct HourlyView: View {
                 Spacer()
             }
 
-            Text(String("\(windSpeed) \(windSpeedUnit)"))
+            Text("WindSpeedFormat\(windSpeed) \(windSpeedUnit)")
         }
         .padding()
         .background(Color.temperatureColor(temperature: temperature))

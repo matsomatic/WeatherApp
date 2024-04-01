@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WeatherCode: Int, Decodable {
+enum WeatherCode: Int, Decodable, CaseIterable {
     case clear = 0
     case mainlyClear = 1
     case partlyCloudy = 2

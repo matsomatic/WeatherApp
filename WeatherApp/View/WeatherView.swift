@@ -16,17 +16,18 @@ struct WeatherView: View {
         @Bindable var viewModel = viewModel
         VStack {
             VStack {
-                TextField(String("Place"), text: $viewModel.searchString)
+                TextField("Location", text: $viewModel.searchString)
                     .textFieldStyle(.roundedBorder)
                 HStack {
                     Spacer()
-                    Button(String("Get Forecast"), action: {
+                    Button("Get Forecast", action: {
                         dismissKeyboard()
                         viewModel.performSearch()
                     })
                     .buttonStyle(.borderedProminent)
                     .foregroundColor(.black)
                     .tint(Color.temperatureColor(temperature: 0))
+                    .disabled(viewModel.searchString.isEmpty)
                     Spacer()
                 }
             }
@@ -48,11 +49,15 @@ struct WeatherView: View {
         VStack(alignment: .center) {
             switch viewModel.state {
             case .empty:
-                Text("Empty")
+                Spacer()
+                Text("⬆\nEnter a location and tap the button to get a weather forecast.")
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                Spacer()
             case .loading:
                 Spacer()
                 ProgressView()
-                Text(String("Loading"))
+                Text("Loading")
                 Spacer()
             case .available(let forecast):
                 @Bindable var viewModel = viewModel
@@ -75,7 +80,7 @@ struct WeatherView: View {
                         }
                     }()
                     VStack {
-                        Text(String("Weather Forecast\n\(viewModel.lastSearched)\n(\(forecast.timezoneAbbreviation))"))
+                        Text("Weather Forecast\n\(viewModel.lastSearched)\n(\(forecast.timezoneAbbreviation))")
                             .font(.largeTitle)
                             .multilineTextAlignment(.center)
                         Spacer()
@@ -136,8 +141,19 @@ struct WeatherView: View {
                     }
                 }
                 
-            case .error:
-                Text(String("Error"))
+            case .error(let error):
+                Spacer()
+                if case .geoLookupIssue = error {
+                    Text(String("❌\n Could not find location. Try specifying a place name and country, e.g. \"London, UK\""))
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                    
+                } else {
+                    Text(String("❌\n Could not load forecast. Try again later."))
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                }
+                Spacer()
             }
         }
     }
@@ -150,7 +166,7 @@ struct WeatherView: View {
     }
 }
 
-#Preview {
+#Preview("Empty") {
     struct PreviewGeocoder: Geocoder {
         func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) {
             return (0.5, 0.5)
@@ -158,3 +174,31 @@ struct WeatherView: View {
     }
     return WeatherView(viewModel: WeatherViewModel(geoLookup: PreviewGeocoder(), dispatcher: URLSession.shared))
 }
+
+#Preview("Loading") {
+    struct PreviewGeocoder: Geocoder {
+        func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) {
+            return (0.5, 0.5)
+        }
+    }
+    return WeatherView(viewModel: WeatherViewModel(state: .loading, geoLookup: PreviewGeocoder(), dispatcher: URLSession.shared))
+}
+
+#Preview("Error Geocoding") {
+    struct PreviewGeocoder: Geocoder {
+        func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) {
+            return (0.5, 0.5)
+        }
+    }
+    return WeatherView(viewModel: WeatherViewModel(state: .error(error: .geoLookupIssue), geoLookup: PreviewGeocoder(), dispatcher: URLSession.shared))
+}
+
+#Preview("Error Forecast") {
+    struct PreviewGeocoder: Geocoder {
+        func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) {
+            return (0.5, 0.5)
+        }
+    }
+    return WeatherView(viewModel: WeatherViewModel(state: .error(error: .forecastIssue), geoLookup: PreviewGeocoder(), dispatcher: URLSession.shared))
+}
+

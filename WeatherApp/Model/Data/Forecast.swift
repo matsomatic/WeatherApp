@@ -71,7 +71,7 @@ struct Forecast: Decodable {
             
             var hourIndex = hourlyValues.time.firstIndex { timeOfDayString in
                 let timeOfDay = timeOfDayFormat.date(from: timeOfDayString) ?? .distantFuture
-                return timeOfDay == day
+                return timeOfDay.compare(day) != .orderedAscending && timeOfDay.compare(nextDay) == .orderedAscending
             } ?? .max
             var hours = [HourlyData]()
             let numberOfHours = hourlyValues.time.count

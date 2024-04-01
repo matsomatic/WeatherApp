@@ -1,0 +1,45 @@
+{
+    "daily": {
+        "sunrise": [
+            "2024-03-29T06:05",
+            "2024-03-30T06:04"
+        ],
+        "sunset": [
+            "2024-03-29T18:21",
+            "2024-03-30T18:22"
+        ],
+        "time": [
+            "2024-03-29",
+            "2024-03-30"
+        ]
+    },
+    "hourly": {
+        "temperature_2m": [
+            30.0,
+            25.0
+        ],
+        "time": [
+            "2024-03-29T12:00",
+            "2024-03-31T12:00"
+        ],
+        "weather_code": [
+            3,
+            2
+        ],
+        "wind_direction_10m": [
+            335,
+            45
+        ],
+        "wind_speed_10m": [
+            6.0,
+            7.0
+        ]
+    },
+    "hourly_units": {
+        "temperature_2m": "°C",
+        "wind_speed_10m": "km/h"
+    },
+    "latitude": 18.125,
+    "longitude": -77.375,
+    "timezone_abbreviation": "EST"
+}

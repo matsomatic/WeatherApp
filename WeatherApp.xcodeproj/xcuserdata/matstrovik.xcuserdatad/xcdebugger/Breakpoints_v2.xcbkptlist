@@ -5,51 +5,14 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.RuntimeIssueBreakpoint">
          <BreakpointContent
-            uuid = "016B6C9A-534B-4664-8CFF-2234CA832388"
+            uuid = "316EB656-C0C2-4BAE-BDC3-CA503854CF87"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeatherAppTests/WeatherAppTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "testParsing()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "016B6C9A-534B-4664-8CFF-2234CA832388 - 1ec25621f17b6504"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherAppTests.ForecastTests.testParsing() throws -&gt; ()"
-                  moduleName = "WeatherAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherAppTests/WeatherAppTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "26"
-                  endingLineNumber = "26"
-                  offsetFromSymbolStart = "1152">
-               </Location>
-               <Location
-                  uuid = "016B6C9A-534B-4664-8CFF-2234CA832388 - 1ec25621f17b6527"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "WeatherAppTests.ForecastTests.testParsing() throws -&gt; ()"
-                  moduleName = "WeatherAppTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/matstrovik/Documents/dev/WeatherApp/WeatherAppTests/WeatherAppTests.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "27"
-                  endingLineNumber = "27"
-                  offsetFromSymbolStart = "1396">
-               </Location>
-            </Locations>
+            breakpointStackSelectionBehavior = "1"
+            type = "65535">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

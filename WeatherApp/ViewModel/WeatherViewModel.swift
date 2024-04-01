@@ -9,11 +9,17 @@ import Foundation
 
 @Observable
 class WeatherViewModel {
+    
+    enum WeatherViewModelError: Error {
+        case geoLookupIssue
+        case forecastIssue
+    }
+    
     enum WeatherState {
         case empty
         case loading
         case available(forecast: Forecast)
-        case error
+        case error(error: WeatherViewModelError)
     }
     
     var searchString: String = ""
@@ -87,7 +93,7 @@ class WeatherViewModel {
             lastSearched = searchString
             let location = await geoLookup.findLocationForAddress(searchString)
             guard let longitude = location.longitude, let latitude = location.latitude else {
-                state = .error
+                state = .error(error: WeatherViewModelError.geoLookupIssue)
                 return
             }
             
@@ -99,7 +105,7 @@ class WeatherViewModel {
             case .success(let forecast):
                 state = .available(forecast: forecast)
             case .failure:
-                state = .error
+                state = .error(error: WeatherViewModelError.forecastIssue)
             }
         }
     }
