@@ -16,11 +16,11 @@ struct WeatherView: View {
         @Bindable var viewModel = viewModel
         VStack {
             VStack {
-                TextField("Place", text: $viewModel.searchString)
+                TextField(String("Place"), text: $viewModel.searchString)
                     .textFieldStyle(.roundedBorder)
                 HStack {
                     Spacer()
-                    Button("Search Weather", action: {
+                    Button(String("Get Forecast"), action: {
                         dismissKeyboard()
                         viewModel.performSearch()
                     })
@@ -151,5 +151,10 @@ struct WeatherView: View {
 }
 
 #Preview {
-    WeatherView(viewModel: WeatherViewModel(geoLookup: MockGeocoder(), dispatcher: URLSession.shared))
+    struct PreviewGeocoder: Geocoder {
+        func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) {
+            return (0.5, 0.5)
+        }
+    }
+    return WeatherView(viewModel: WeatherViewModel(geoLookup: PreviewGeocoder(), dispatcher: URLSession.shared))
 }
