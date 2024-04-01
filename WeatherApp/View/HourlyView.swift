@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HourlyView: View {
-    
     let temperature: Double
     let temperatureUnit: String
     let weatherCode: WeatherCode
@@ -18,13 +17,13 @@ struct HourlyView: View {
     let time: Date
     var timeZone: String
     let isNight: Bool
-    
+
     let hourFormatter = { let result = DateFormatter()
         result.dateFormat = "HH:mm"
         result.timeZone = TimeZone(abbreviation: "GMT")
         return result
     }()
-    
+
     var body: some View {
         VStack(alignment: .center) {
             Text(hourFormatter.string(from: time))
@@ -38,7 +37,7 @@ struct HourlyView: View {
                     .rotationEffect(.degrees(Double(windDirection)))
                 Spacer()
             }
-                
+
             Text(String("\(windSpeed) \(windSpeedUnit)"))
         }
         .padding()
@@ -48,13 +47,13 @@ struct HourlyView: View {
 
 #Preview {
     HourlyView(
-               temperature:23.0,
-               temperatureUnit: "°C",
-               weatherCode: .partlyCloudy,
-               windDirection: 45,
-               windSpeed: 5.0,
-               windSpeedUnit: "km/h",
-               time: Date.distantPast,
-               timeZone: "GMT",
-               isNight: false)
+        temperature: 23.0,
+        temperatureUnit: "°C",
+        weatherCode: .partlyCloudy,
+        windDirection: 45,
+        windSpeed: 5.0,
+        windSpeedUnit: "km/h",
+        time: Date.distantPast,
+        timeZone: "GMT",
+        isNight: false)
 }

@@ -8,10 +8,7 @@
 import Foundation
 
 protocol Request {
-    var baseUrl: URL{get}
-    var path: String {get}
-    var params: [String: String]? {get}
+    var baseUrl: URL { get }
+    var path: String { get }
+    var params: [String: String]? { get }
 }
-
-
-

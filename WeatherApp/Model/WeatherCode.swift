@@ -35,5 +35,5 @@ enum WeatherCode: Int, Decodable {
     case snowShowersHeavy = 86
     case thunderStorm = 95
     case thunderStormSlightHail = 96
-    case thunderStormHeavyHail = 99    
+    case thunderStormHeavyHail = 99
 }

@@ -8,18 +8,16 @@
 import Foundation
 
 class ForecastRequest: JsonRequest<Forecast> {
-    
     override var path: String {
         "/v1/forecast"
     }
     
-    override var params: [String : String]? {
+    override var params: [String: String]? {
         ["latitude": "\(latitude)",
          "longitude": "\(longitude)",
          "hourly": "temperature_2m,weather_code,wind_speed_10m,wind_direction_10m",
          "daily": "sunrise,sunset",
-         "timezone": "auto"
-        ]
+         "timezone": "auto"]
     }
     
     let latitude: Double

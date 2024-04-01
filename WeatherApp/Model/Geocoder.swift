@@ -8,5 +8,5 @@
 import Foundation
 
 protocol Geocoder {
-    func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?) 
+    func findLocationForAddress(_ address: String) async -> (latitude: Double?, longitude: Double?)
 }

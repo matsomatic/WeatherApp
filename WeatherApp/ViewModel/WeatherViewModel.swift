@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 class WeatherViewModel {
-    
     enum WeatherState {
         case empty
         case loading
@@ -30,7 +29,7 @@ class WeatherViewModel {
                 }) {
                     if let selectedIndex = forecast.dailyData.firstIndex(where: { day in
                         day == selectedDay
-                    }){
+                    }) {
                         if selectedIndex != selectedDayIndex {
                             selectedDayIndex = selectedIndex
                         }
@@ -43,15 +42,17 @@ class WeatherViewModel {
     let geoLookup: Geocoder
     let dispatcher: RequestDispatcher
     
-    private let hourFormatter = {let result = DateFormatter()
+    private let hourFormatter = { let result = DateFormatter()
         result.dateFormat = "HH:mm"
         result.timeZone = TimeZone(abbreviation: "GMT")
-        return result } ()
+        return result
+    }()
     
-    private let dayFormatter = {let result = DateFormatter()
+    private let dayFormatter = { let result = DateFormatter()
         result.dateFormat = "EEE dd MMM"
         result.timeZone = TimeZone(abbreviation: "GMT")
-        return result } ()
+        return result
+    }()
     
     init(searchString: String = "", state: WeatherState = .empty, geoLookup: Geocoder, dispatcher: RequestDispatcher) {
         self.searchString = searchString

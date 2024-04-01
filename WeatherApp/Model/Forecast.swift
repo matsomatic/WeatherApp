@@ -8,7 +8,6 @@
 import Foundation
 
 struct Forecast: Decodable {
-    
     private struct HourlyDataContainer: Decodable {
         let time: [String]
         let temperature: [Double]
@@ -94,9 +93,8 @@ struct Forecast: Decodable {
             }
             let sunrise = timeOfDayFormat.date(from: dailyValues.sunrise[index]) ?? day
             let sunset = timeOfDayFormat.date(from: dailyValues.sunset[index]) ?? day
-            days.append(DailyData(day: day, sunrise: sunrise , sunset: sunset, hourlyData: hours))
+            days.append(DailyData(day: day, sunrise: sunrise, sunset: sunset, hourlyData: hours))
         }
         self.dailyData = days
     }
-    
 }

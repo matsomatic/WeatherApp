@@ -8,18 +8,17 @@
 import Foundation
 
 class JsonRequest<T: Decodable>: Request {
-    
-    var baseUrl : URL {
+    var baseUrl: URL {
         URL(string: "https://api.open-meteo.com")!
     }
     
-    var path : String {
-        assert(false, "Override in subclass")
+    var path: String {
+        assertionFailure("Override in subclass")
         return ""
     }
     
     var params: [String: String]? {
-        assert(false, "Override in subclass")
+        assertionFailure("Override in subclass")
         return nil
     }
     
@@ -33,7 +32,7 @@ class JsonRequest<T: Decodable>: Request {
         self.dispatcher = dispatcher
     }
     
-    func process() async -> Result <T, Error> {
+    func process() async -> Result<T, Error> {
         let dataResponse = await dispatcher.dispatch(request: self)
         switch dataResponse {
         case .success(let data):
@@ -41,7 +40,7 @@ class JsonRequest<T: Decodable>: Request {
                 let object = try JSONDecoder().decode(T.self, from: data)
                 return .success(object)
             } catch {
-                return.failure(JsonRequestError.parsingFailed(error))
+                return .failure(JsonRequestError.parsingFailed(error))
             }
         case .failure(let error):
             return .failure(error)

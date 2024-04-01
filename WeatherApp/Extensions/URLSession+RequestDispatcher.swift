@@ -27,7 +27,7 @@ extension URLSession: RequestDispatcher {
                 return
             }
             let urlRequest = URLRequest(url: url)
-            let task = dataTask(with: urlRequest) { data, response, error in
+            let task = dataTask(with: urlRequest) { data, _, error in
                 guard error == nil else {
                     continuation.resume(returning: .failure(error!))
                     return

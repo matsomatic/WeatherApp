@@ -5,21 +5,20 @@
 //  Created by Mats Trovik on 29/03/2024.
 //
 
-import SwiftUI
 import CoreLocation
+import SwiftUI
 
 struct WeatherView: View {
-    
     let viewModel: WeatherViewModel
     @State private var scrollHour: Date?
     
     var body: some View {
         @Bindable var viewModel = viewModel
         VStack {
-            VStack{
+            VStack {
                 TextField("Place", text: $viewModel.searchString)
                     .textFieldStyle(.roundedBorder)
-                HStack{
+                HStack {
                     Spacer()
                     Button("Search Weather", action: {
                         dismissKeyboard()
@@ -34,10 +33,10 @@ struct WeatherView: View {
             .padding()
             .background(in: RoundedRectangle(cornerRadius: 20))
             .backgroundStyle(.linearGradient(colors:
-                                                [Color.temperatureColor(temperature: 40),
-                                                 Color.temperatureColor(temperature: 20)],
-                                             startPoint: UnitPoint(x: 0, y: 1),
-                                             endPoint: UnitPoint(x: 1, y: 0)))
+                [Color.temperatureColor(temperature: 40),
+                 Color.temperatureColor(temperature: 20)],
+                startPoint: UnitPoint(x: 0, y: 1),
+                endPoint: UnitPoint(x: 1, y: 0)))
             getDetialView()
             Spacer()
         }
@@ -60,22 +59,22 @@ struct WeatherView: View {
                 let dailyData = forecast.dailyData[viewModel.selectedDayIndex]
                 VStack {
                     let gradientPoints: [UnitPoint] = {
-                        switch (viewModel.selectedDayIndex % 4) {
+                        switch viewModel.selectedDayIndex % 4 {
                         case 0:
                             return [UnitPoint(x: 0, y: 1),
-                                UnitPoint(x: 1, y: 0)]
+                                    UnitPoint(x: 1, y: 0)]
                         case 1:
                             return [UnitPoint(x: 1, y: 1),
-                                UnitPoint(x: 0, y: 0)]
+                                    UnitPoint(x: 0, y: 0)]
                         case 2:
                             return [UnitPoint(x: 1, y: 0),
-                                UnitPoint(x: 0, y: 1)]
+                                    UnitPoint(x: 0, y: 1)]
                         default:
                             return [UnitPoint(x: 0, y: 0),
-                                UnitPoint(x: 1, y: 1)]
+                                    UnitPoint(x: 1, y: 1)]
                         }
-                    } ()
-                    VStack{
+                    }()
+                    VStack {
                         Text(String("Weather Forecast\n\(viewModel.lastSearched)\n(\(forecast.timezoneAbbreviation))"))
                             .font(.largeTitle)
                             .multilineTextAlignment(.center)
@@ -90,7 +89,7 @@ struct WeatherView: View {
                             }
                             Spacer()
                             let dayDescription = viewModel.dayStringFor(dailyData.day)
-                            Text (dayDescription)
+                            Text(dayDescription)
                                 .font(.title)
                             Spacer()
                             VStack {
@@ -108,10 +107,10 @@ struct WeatherView: View {
                     .padding()
                     .background(in: RoundedRectangle(cornerRadius: 20))
                     .backgroundStyle(.linearGradient(colors:
-                                                        [Color.temperatureColor(temperature: 20),
-                                                         Color.temperatureColor(temperature: 40)],
-                                                     startPoint: gradientPoints[0],
-                                                     endPoint: gradientPoints[1]))
+                        [Color.temperatureColor(temperature: 20),
+                         Color.temperatureColor(temperature: 40)],
+                        startPoint: gradientPoints[0],
+                        endPoint: gradientPoints[1]))
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(viewModel.allHours) { hour in
@@ -126,13 +125,13 @@ struct WeatherView: View {
                                     time: hour.time,
                                     timeZone: forecast.timezoneAbbreviation,
                                     isNight: isNight)
-                                .clipShape(.rect(cornerRadius: 20))
+                                    .clipShape(.rect(cornerRadius: 20))
                             }
                         }
                         .scrollTargetLayout()
                     }
                     .scrollPosition(id: $scrollHour)
-                    .onChange(of: scrollHour) { oldValue, newValue in
+                    .onChange(of: scrollHour) { _, newValue in
                         viewModel.selectedHour = newValue
                     }
                 }
