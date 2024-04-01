@@ -59,8 +59,24 @@ struct WeatherView: View {
                 @Bindable var viewModel = viewModel
                 let dailyData = forecast.dailyData[viewModel.selectedDayIndex]
                 VStack {
+                    let gradientPoints: [UnitPoint] = {
+                        switch (viewModel.selectedDayIndex % 4) {
+                        case 0:
+                            return [UnitPoint(x: 0, y: 1),
+                                UnitPoint(x: 1, y: 0)]
+                        case 1:
+                            return [UnitPoint(x: 1, y: 1),
+                                UnitPoint(x: 0, y: 0)]
+                        case 2:
+                            return [UnitPoint(x: 1, y: 0),
+                                UnitPoint(x: 0, y: 1)]
+                        default:
+                            return [UnitPoint(x: 0, y: 0),
+                                UnitPoint(x: 1, y: 1)]
+                        }
+                    } ()
                     VStack{
-                        Text(String("Weather Forecast\n\(viewModel.lastSearched)"))
+                        Text(String("Weather Forecast\n\(viewModel.lastSearched)\n(\(forecast.timezoneAbbreviation))"))
                             .font(.largeTitle)
                             .multilineTextAlignment(.center)
                         Spacer()
@@ -73,7 +89,8 @@ struct WeatherView: View {
                                 Text(viewModel.hourStringFor(dailyData.sunrise))
                             }
                             Spacer()
-                            Text (viewModel.dayStringFor(dailyData.day))
+                            let dayDescription = viewModel.dayStringFor(dailyData.day)
+                            Text (dayDescription)
                                 .font(.title)
                             Spacer()
                             VStack {
@@ -93,8 +110,8 @@ struct WeatherView: View {
                     .backgroundStyle(.linearGradient(colors:
                                                         [Color.temperatureColor(temperature: 20),
                                                          Color.temperatureColor(temperature: 40)],
-                                                     startPoint: UnitPoint(x: 0, y: 1),
-                                                     endPoint: UnitPoint(x: 1, y: 0)))
+                                                     startPoint: gradientPoints[0],
+                                                     endPoint: gradientPoints[1]))
                     ScrollView(.horizontal) {
                         HStack {
                             ForEach(viewModel.allHours) { hour in

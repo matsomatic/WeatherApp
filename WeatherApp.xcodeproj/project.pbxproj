@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3805DC2A2BBA47F800D6D70B /* MockDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3805DC292BBA47F800D6D70B /* MockDispatcher.swift */; };
+		3805DC2B2BBA481000D6D70B /* MockGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */; };
+		3805DC2F2BBA497400D6D70B /* InlineSnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 3805DC2E2BBA497400D6D70B /* InlineSnapshotTesting */; };
+		3805DC312BBA497400D6D70B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 3805DC302BBA497400D6D70B /* SnapshotTesting */; };
 		38B3DE3A2BB6F5440007DD3E /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE392BB6F5440007DD3E /* WeatherApp.swift */; };
 		38B3DE3C2BB6F5440007DD3E /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE3B2BB6F5440007DD3E /* WeatherView.swift */; };
 		38B3DE3E2BB6F5450007DD3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38B3DE3D2BB6F5450007DD3E /* Assets.xcassets */; };
@@ -25,7 +29,6 @@
 		38B3DE772BB739B80007DD3E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 38B3DE762BB739B80007DD3E /* Localizable.xcstrings */; };
 		38B3DE792BB746CA0007DD3E /* Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE782BB746CA0007DD3E /* Geocoder.swift */; };
 		38B3DE7B2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE7A2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift */; };
-		38B3DE7F2BB7507C0007DD3E /* MockGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */; };
 		38B3DE842BB879A70007DD3E /* HourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE832BB879A70007DD3E /* HourlyView.swift */; };
 		38B3DE862BB87AD70007DD3E /* WeatherCode+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE852BB87AD70007DD3E /* WeatherCode+Image.swift */; };
 		38B3DE892BB8BB580007DD3E /* Color+Temperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B3DE882BB8BB580007DD3E /* Color+Temperature.swift */; };
@@ -55,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3805DC292BBA47F800D6D70B /* MockDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDispatcher.swift; sourceTree = "<group>"; };
 		38B3DE362BB6F5440007DD3E /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38B3DE392BB6F5440007DD3E /* WeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApp.swift; sourceTree = "<group>"; };
 		38B3DE3B2BB6F5440007DD3E /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3805DC2F2BBA497400D6D70B /* InlineSnapshotTesting in Frameworks */,
+				3805DC312BBA497400D6D70B /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +118,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3805DC2D2BBA497400D6D70B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		38B3DE2D2BB6F5440007DD3E = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +132,7 @@
 				38B3DE492BB6F5460007DD3E /* WeatherAppTests */,
 				38B3DE532BB6F5460007DD3E /* WeatherAppUITests */,
 				38B3DE372BB6F5440007DD3E /* Products */,
+				3805DC2D2BBA497400D6D70B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				38B3DE7D2BB7505B0007DD3E /* MockGeocoder.swift */,
+				3805DC292BBA47F800D6D70B /* MockDispatcher.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -286,6 +301,10 @@
 				38B3DE482BB6F5460007DD3E /* PBXTargetDependency */,
 			);
 			name = WeatherAppTests;
+			packageProductDependencies = (
+				3805DC2E2BBA497400D6D70B /* InlineSnapshotTesting */,
+				3805DC302BBA497400D6D70B /* SnapshotTesting */,
+			);
 			productName = WeatherAppTests;
 			productReference = 38B3DE462BB6F5460007DD3E /* WeatherAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -340,6 +359,9 @@
 				Base,
 			);
 			mainGroup = 38B3DE2D2BB6F5440007DD3E;
+			packageReferences = (
+				3805DC2C2BBA494F00D6D70B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 38B3DE372BB6F5440007DD3E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -399,7 +421,6 @@
 				38B3DE7B2BB7474E0007DD3E /* CLGeocoder+Geocoder.swift in Sources */,
 				38B3DE892BB8BB580007DD3E /* Color+Temperature.swift in Sources */,
 				38B3DE652BB6F6AC0007DD3E /* Forecast.swift in Sources */,
-				38B3DE7F2BB7507C0007DD3E /* MockGeocoder.swift in Sources */,
 				38B3DE842BB879A70007DD3E /* HourlyView.swift in Sources */,
 				38B3DE972BB909010007DD3E /* ForecastRequest.swift in Sources */,
 				38B3DE792BB746CA0007DD3E /* Geocoder.swift in Sources */,
@@ -412,7 +433,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3805DC2A2BBA47F800D6D70B /* MockDispatcher.swift in Sources */,
 				38B3DE4B2BB6F5460007DD3E /* WeatherAppTests.swift in Sources */,
+				3805DC2B2BBA481000D6D70B /* MockGeocoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +751,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3805DC2C2BBA494F00D6D70B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.15.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3805DC2E2BBA497400D6D70B /* InlineSnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3805DC2C2BBA494F00D6D70B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = InlineSnapshotTesting;
+		};
+		3805DC302BBA497400D6D70B /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3805DC2C2BBA494F00D6D70B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 38B3DE2E2BB6F5440007DD3E /* Project object */;
 }
