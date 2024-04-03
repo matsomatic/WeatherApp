@@ -21,6 +21,7 @@ final class Color_TemperatureTests: XCTestCase {
             }
         }
         let host = UIHostingController(rootView: stack)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 }

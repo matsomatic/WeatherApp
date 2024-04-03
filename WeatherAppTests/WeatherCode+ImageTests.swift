@@ -22,6 +22,7 @@ final class WeatherCode_ImageTests: XCTestCase {
             }
         }
         let host = UIHostingController(rootView: stack)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 }

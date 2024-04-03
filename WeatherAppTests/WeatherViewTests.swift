@@ -15,6 +15,7 @@ final class WeatherViewTests: XCTestCase {
         let viewModel = WeatherViewModel(state: .empty, geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 
@@ -22,6 +23,7 @@ final class WeatherViewTests: XCTestCase {
         let viewModel = WeatherViewModel(state: .error(error: .geoLookupIssue), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 
@@ -29,6 +31,7 @@ final class WeatherViewTests: XCTestCase {
         let viewModel = WeatherViewModel(state: .error(error: .forecastIssue), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 
@@ -36,6 +39,7 @@ final class WeatherViewTests: XCTestCase {
         let viewModel = WeatherViewModel(state: .loading, geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 
@@ -44,6 +48,7 @@ final class WeatherViewTests: XCTestCase {
         let viewModel = WeatherViewModel(state: .available(forecast: forecast), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
+        host.overrideUserInterfaceStyle = .light
         assertSnapshot(of: host, as: .image)
     }
 }
