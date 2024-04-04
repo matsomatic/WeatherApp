@@ -141,7 +141,7 @@ final class WeatherViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 1)
         
         // Verify
-        XCTAssertEqual(geocoder.findLocationcalledForAddress, "London")
+        XCTAssertEqual(geocoder.findLocationcalledForAddress, "Kingston, Jamaica")
         assertInlineSnapshot(of: dispatcher.dispatchedRequest?.params, as: .dump) {
             """
             ▿ Optional<Dictionary<String, String>>
