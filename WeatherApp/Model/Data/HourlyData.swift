@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct HourlyData: Identifiable {
-    var id: Date { time }
+struct HourlyData {
     let time: Date
     let weatherCode: WeatherCode
     let temperature: Double

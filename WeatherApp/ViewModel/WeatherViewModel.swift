@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @Observable
 class WeatherViewModel {
@@ -17,7 +18,7 @@ class WeatherViewModel {
     enum WeatherState {
         case empty
         case loading
-        case available(forecast: Forecast)
+        case forecastAvailable
         case error(error: WeatherViewModelError)
     }
     
@@ -26,9 +27,11 @@ class WeatherViewModel {
     var state: WeatherState = .empty
     var selectedDayIndex = 0
     
+    private var forecast: Forecast?
+    
     var selectedHour: Date? {
         didSet {
-            if case .available(let forecast) = state {
+            if let forecast {
                 if let selectedHour, let selectedDay = forecast.dailyData.last(where: { day in
                     day.day.compare(selectedHour) != .orderedDescending
                 }) {
@@ -66,11 +69,35 @@ class WeatherViewModel {
         self.dispatcher = dispatcher
     }
     
-    var allHours: [HourlyData] {
-        if case .available(let forecast) = state {
-            var result = [HourlyData]()
+    func dayConfiguration(index: Int) -> WeatherViewConfiguration? {
+        if let forecast {
+            let day = forecast.dailyData[index]
+            return WeatherViewConfiguration(locationName: lastSearched,
+                                            timeZoneAbbreviation: forecast.timezoneAbbreviation,
+                                            sunriseTime: day.sunrise,
+                                            sunsetTime: day.sunset,
+                                            day: day.day)
+        }
+        return nil
+    }
+    
+    var hourConfigurations: [HourViewConfiguration] {
+        if let forecast {
+            var result = [HourViewConfiguration]()
             for day in forecast.dailyData {
-                result.append(contentsOf: day.hourlyData)
+            
+                result.append(contentsOf: day.hourlyData.map({ hour in
+                    let isNight = hour.time.compare(day.sunrise) == .orderedAscending || hour.time.compare(day.sunset) == .orderedDescending
+                 
+                    return HourViewConfiguration(temperature: hour.temperature,
+                                                 temperatureUnit: forecast.hourlyUnits.temperature,
+                                                 weatherCode: hour.weatherCode,
+                                                 windDirection: hour.windDirection,
+                                                 windSpeed: hour.windSpeed,
+                                                 windSpeedUnit: forecast.hourlyUnits.windSpeed,
+                                                 time: hour.time,
+                                                 isNight: isNight)
+                }))
             }
             return result
         } else {
@@ -102,7 +129,8 @@ class WeatherViewModel {
             let result = await request.process()
             switch result {
             case .success(let forecast):
-                state = .available(forecast: forecast)
+                self.forecast = forecast
+                state = .forecastAvailable
             case .failure:
                 state = .error(error: WeatherViewModelError.forecastIssue)
             }

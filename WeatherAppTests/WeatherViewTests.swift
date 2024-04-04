@@ -44,8 +44,28 @@ final class WeatherViewTests: XCTestCase {
     }
 
     func testFullForecast() throws {
-        let forecast = Forecast.fixture(type: .full)
-        let viewModel = WeatherViewModel(state: .available(forecast: forecast), geoLookup: MockGeocoder(), dispatcher: MockDispatcher())
+        let geocoder = MockGeocoder()
+        geocoder.coordinate = (1,1)
+        let dispatcher = MockDispatcher()
+        dispatcher.result = .success(Forecast.forecastData(type: .full))
+        let viewModel = WeatherViewModel(state: .empty, geoLookup: geocoder , dispatcher: dispatcher)
+        
+        // Configure expectation
+        let expectation = XCTestExpectation(description: "Should Receive Error")
+        @Sendable func observe() {
+            withObservationTracking {
+                if case .forecastAvailable = viewModel.state {
+                    expectation.fulfill()
+                }
+            } onChange: {
+                DispatchQueue.main.async(execute: observe)
+            }
+        }
+        observe()
+        viewModel.performSearch()
+        wait(for: [expectation], timeout: 1)
+        
+        
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         host.overrideUserInterfaceStyle = .light

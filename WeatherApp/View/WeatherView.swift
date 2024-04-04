@@ -8,10 +8,18 @@
 import CoreLocation
 import SwiftUI
 
+struct WeatherViewConfiguration {
+    let locationName: String
+    let timeZoneAbbreviation: String
+    let sunriseTime: Date
+    let sunsetTime: Date
+    let day: Date
+}
+
 struct WeatherView: View {
     let viewModel: WeatherViewModel
     @State private var scrollHour: Date?
-
+    
     var body: some View {
         @Bindable var viewModel = viewModel
         VStack {
@@ -34,16 +42,16 @@ struct WeatherView: View {
             .padding()
             .background(in: RoundedRectangle(cornerRadius: 20))
             .backgroundStyle(.linearGradient(colors:
-                [Color.temperatureColor(temperature: 40),
-                 Color.temperatureColor(temperature: 20)],
-                startPoint: UnitPoint(x: 0, y: 1),
-                endPoint: UnitPoint(x: 1, y: 0)))
+                                                [Color.temperatureColor(temperature: 40),
+                                                 Color.temperatureColor(temperature: 20)],
+                                             startPoint: UnitPoint(x: 0, y: 1),
+                                             endPoint: UnitPoint(x: 1, y: 0)))
             getDetialView()
             Spacer()
         }
         .padding()
     }
-
+    
     @ViewBuilder
     func getDetialView() -> some View {
         VStack(alignment: .center) {
@@ -59,95 +67,85 @@ struct WeatherView: View {
                 ProgressView()
                 Text("Loading")
                 Spacer()
-            case .available(let forecast):
+            case .forecastAvailable:
                 @Bindable var viewModel = viewModel
-                let dailyData = forecast.dailyData[viewModel.selectedDayIndex]
-                VStack {
-                    let gradientPoints: [UnitPoint] = {
-                        switch viewModel.selectedDayIndex % 4 {
-                        case 0:
-                            return [UnitPoint(x: 0, y: 1),
-                                    UnitPoint(x: 1, y: 0)]
-                        case 1:
-                            return [UnitPoint(x: 1, y: 1),
-                                    UnitPoint(x: 0, y: 0)]
-                        case 2:
-                            return [UnitPoint(x: 1, y: 0),
-                                    UnitPoint(x: 0, y: 1)]
-                        default:
-                            return [UnitPoint(x: 0, y: 0),
-                                    UnitPoint(x: 1, y: 1)]
-                        }
-                    }()
+                if let dailyData = viewModel.dayConfiguration(index: viewModel.selectedDayIndex) {
                     VStack {
-                        Text("Weather Forecast\n\(viewModel.lastSearched)\n(\(forecast.timezoneAbbreviation))")
-                            .font(.largeTitle)
-                            .multilineTextAlignment(.center)
-                        Spacer()
-                        HStack {
-                            VStack {
-                                Image(systemName: "sunrise.circle.fill")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 60, height: 60)
-                                Text(viewModel.hourStringFor(dailyData.sunrise))
+                        let gradientPoints: [UnitPoint] = {
+                            switch viewModel.selectedDayIndex % 4 {
+                            case 0:
+                                return [UnitPoint(x: 0, y: 1),
+                                        UnitPoint(x: 1, y: 0)]
+                            case 1:
+                                return [UnitPoint(x: 1, y: 1),
+                                        UnitPoint(x: 0, y: 0)]
+                            case 2:
+                                return [UnitPoint(x: 1, y: 0),
+                                        UnitPoint(x: 0, y: 1)]
+                            default:
+                                return [UnitPoint(x: 0, y: 0),
+                                        UnitPoint(x: 1, y: 1)]
+                            }
+                        }()
+                        VStack {
+                            Text("Weather Forecast\n\(dailyData.locationName)\n(\(dailyData.timeZoneAbbreviation))")
+                                .font(.largeTitle)
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                            HStack {
+                                VStack {
+                                    Image(systemName: "sunrise.circle.fill")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 60, height: 60)
+                                    Text(viewModel.hourStringFor(dailyData.sunriseTime))
+                                }
+                                Spacer()
+                                let dayDescription = viewModel.dayStringFor(dailyData.day)
+                                Text(dayDescription)
+                                    .font(.title)
+                                Spacer()
+                                VStack {
+                                    Image(systemName: "sunset.circle.fill")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 60, height: 60)
+                                    Text(viewModel.hourStringFor(dailyData.sunsetTime))
+                                }
                             }
                             Spacer()
-                            let dayDescription = viewModel.dayStringFor(dailyData.day)
-                            Text(dayDescription)
-                                .font(.title)
-                            Spacer()
-                            VStack {
-                                Image(systemName: "sunset.circle.fill")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 60, height: 60)
-                                Text(viewModel.hourStringFor(dailyData.sunset))
-                            }
                         }
-                        Spacer()
-                    }
-                    .clipShape(.rect(cornerRadius: 20))
-                    .frame(maxHeight: .infinity)
-                    .padding()
-                    .background(in: RoundedRectangle(cornerRadius: 20))
-                    .backgroundStyle(.linearGradient(colors:
-                        [Color.temperatureColor(temperature: 20),
-                         Color.temperatureColor(temperature: 40)],
-                        startPoint: gradientPoints[0],
-                        endPoint: gradientPoints[1]))
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(viewModel.allHours) { hour in
-                                let isNight = hour.time.compare(dailyData.sunrise) == .orderedAscending || hour.time.compare(dailyData.sunset) == .orderedDescending
-                                HourlyView(
-                                    temperature: hour.temperature,
-                                    temperatureUnit: forecast.hourlyUnits.temperature,
-                                    weatherCode: hour.weatherCode,
-                                    windDirection: hour.windDirection,
-                                    windSpeed: hour.windSpeed,
-                                    windSpeedUnit: forecast.hourlyUnits.windSpeed,
-                                    time: hour.time,
-                                    timeZone: forecast.timezoneAbbreviation,
-                                    isNight: isNight)
-                                    .clipShape(.rect(cornerRadius: 20))
+                        .clipShape(.rect(cornerRadius: 20))
+                        .frame(maxHeight: .infinity)
+                        .padding()
+                        .background(in: RoundedRectangle(cornerRadius: 20))
+                        .backgroundStyle(.linearGradient(colors:
+                                                            [Color.temperatureColor(temperature: 20),
+                                                             Color.temperatureColor(temperature: 40)],
+                                                         startPoint: gradientPoints[0],
+                                                         endPoint: gradientPoints[1]))
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(viewModel.hourConfigurations) { hour in
+                                    HourlyView(configuration: hour)
+                                        .clipShape(.rect(cornerRadius: 20))
+                                }
                             }
+                            .scrollTargetLayout()
                         }
-                        .scrollTargetLayout()
-                    }
-                    .scrollPosition(id: $scrollHour)
-                    .onChange(of: scrollHour) { _, newValue in
-                        viewModel.selectedHour = newValue
+                        .scrollPosition(id: $scrollHour)
+                        .onChange(of: scrollHour) { _, newValue in
+                            viewModel.selectedHour = newValue
+                        }
                     }
                 }
-
             case .error(let error):
                 Spacer()
                 if case .geoLookupIssue = error {
                     Text(String("❌\n Could not find location. Try specifying a place name and country, e.g. \"London, UK\""))
                         .font(.title)
                         .multilineTextAlignment(.center)
-
+                    
                 } else {
                     Text(String("❌\n Could not load forecast. Try again later."))
                         .font(.title)
@@ -157,7 +155,7 @@ struct WeatherView: View {
             }
         }
     }
-
+    
     func getTimeTextFor(date: Date, forecast: Forecast) -> String {
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "HH:mm"

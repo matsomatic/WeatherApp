@@ -127,7 +127,7 @@ final class WeatherViewModelTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Should Receive Error")
         @Sendable func observe() {
             withObservationTracking {
-                if case .available = sut.state {
+                if case .forecastAvailable = sut.state {
                     expectation.fulfill()
                 }
             } onChange: {
@@ -166,37 +166,52 @@ final class WeatherViewModelTests: XCTestCase {
         }
         
         let state = sut.state
-        if case .available(let forecast) = state {
-            assertInlineSnapshot(of: forecast, as: .dump) {
+        if case .forecastAvailable = state {
+            assertInlineSnapshot(of: sut.dayConfiguration(index: 0), as: .dump) {
                 """
-                ▿ Forecast
-                  ▿ dailyData: 2 elements
-                    ▿ DailyData
-                      - day: 2024-03-29T00:00:00Z
-                      ▿ hourlyData: 1 element
-                        ▿ HourlyData
-                          - temperature: 30.0
-                          - time: 2024-03-29T12:00:00Z
-                          - weatherCode: WeatherCode.overcast
-                          - windDirection: 335
-                          - windSpeed: 6.0
-                      - sunrise: 2024-03-29T06:05:00Z
-                      - sunset: 2024-03-29T18:21:00Z
-                    ▿ DailyData
-                      - day: 2024-03-30T00:00:00Z
-                      ▿ hourlyData: 1 element
-                        ▿ HourlyData
-                          - temperature: 25.0
-                          - time: 2024-03-31T12:00:00Z
-                          - weatherCode: WeatherCode.partlyCloudy
-                          - windDirection: 45
-                          - windSpeed: 7.0
-                      - sunrise: 2024-03-30T06:04:00Z
-                      - sunset: 2024-03-30T18:22:00Z
-                  ▿ hourlyUnits: Units
-                    - temperature: "°C"
-                    - windSpeed: "km/h"
-                  - timezoneAbbreviation: "EST"
+                ▿ Optional<WeatherViewConfiguration>
+                  ▿ some: WeatherViewConfiguration
+                    - day: 2024-03-29T00:00:00Z
+                    - locationName: "London"
+                    - sunriseTime: 2024-03-29T06:05:00Z
+                    - sunsetTime: 2024-03-29T18:21:00Z
+                    - timeZoneAbbreviation: "EST"
+
+                """
+            }
+            assertInlineSnapshot(of: sut.dayConfiguration(index: 1), as: .dump) {
+                """
+                ▿ Optional<WeatherViewConfiguration>
+                  ▿ some: WeatherViewConfiguration
+                    - day: 2024-03-30T00:00:00Z
+                    - locationName: "London"
+                    - sunriseTime: 2024-03-30T06:04:00Z
+                    - sunsetTime: 2024-03-30T18:22:00Z
+                    - timeZoneAbbreviation: "EST"
+
+                """
+            }
+            assertInlineSnapshot(of: sut.hourConfigurations, as: .dump) {
+                """
+                ▿ 2 elements
+                  ▿ HourViewConfiguration
+                    - isNight: false
+                    - temperature: 30.0
+                    - temperatureUnit: "°C"
+                    - time: 2024-03-29T12:00:00Z
+                    - weatherCode: WeatherCode.overcast
+                    - windDirection: 335
+                    - windSpeed: 6.0
+                    - windSpeedUnit: "km/h"
+                  ▿ HourViewConfiguration
+                    - isNight: true
+                    - temperature: 25.0
+                    - temperatureUnit: "°C"
+                    - time: 2024-03-31T12:00:00Z
+                    - weatherCode: WeatherCode.partlyCloudy
+                    - windDirection: 45
+                    - windSpeed: 7.0
+                    - windSpeedUnit: "km/h"
 
                 """
             }

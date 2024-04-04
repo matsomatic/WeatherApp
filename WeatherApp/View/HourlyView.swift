@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct HourlyView: View {
+struct HourViewConfiguration: Identifiable  {
+    var id: Date { time }
     let temperature: Double
     let temperatureUnit: String
     let weatherCode: WeatherCode
@@ -15,8 +16,11 @@ struct HourlyView: View {
     let windSpeed: Double
     let windSpeedUnit: String
     let time: Date
-    var timeZone: String
     let isNight: Bool
+}
+
+struct HourlyView: View {
+    let configuration: HourViewConfiguration
 
     let hourFormatter = { let result = DateFormatter()
         result.dateFormat = "HH:mm"
@@ -26,27 +30,27 @@ struct HourlyView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            Text(hourFormatter.string(from: time))
-            weatherCode.image(night: isNight)
-            Text("TemperatureFormat\(temperature)\(temperatureUnit)")
+            Text(hourFormatter.string(from: configuration.time))
+            configuration.weatherCode.image(night: configuration.isNight)
+            Text("TemperatureFormat\(configuration.temperature)\(configuration.temperatureUnit)")
                 .font(.title)
             HStack {
                 Spacer()
                 Image(systemName: "wind")
                 Text("↑")
-                    .rotationEffect(.degrees(Double(windDirection)))
+                    .rotationEffect(.degrees(Double(configuration.windDirection)))
                 Spacer()
             }
 
-            Text("WindSpeedFormat\(windSpeed) \(windSpeedUnit)")
+            Text("WindSpeedFormat\(configuration.windSpeed) \(configuration.windSpeedUnit)")
         }
         .padding()
-        .background(Color.temperatureColor(temperature: temperature))
+        .background(Color.temperatureColor(temperature: configuration.temperature))
     }
 }
 
 #Preview {
-    HourlyView(
+    HourlyView(configuration: HourViewConfiguration (
         temperature: 23.0,
         temperatureUnit: "°C",
         weatherCode: .partlyCloudy,
@@ -54,6 +58,6 @@ struct HourlyView: View {
         windSpeed: 5.0,
         windSpeedUnit: "km/h",
         time: Date.distantPast,
-        timeZone: "GMT",
         isNight: false)
+               )
 }
