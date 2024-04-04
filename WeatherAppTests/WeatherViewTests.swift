@@ -45,11 +45,11 @@ final class WeatherViewTests: XCTestCase {
 
     func testFullForecast() throws {
         let geocoder = MockGeocoder()
-        geocoder.coordinate = (1,1)
+        geocoder.coordinate = (1, 1)
         let dispatcher = MockDispatcher()
         dispatcher.result = .success(Forecast.forecastData(type: .full))
-        let viewModel = WeatherViewModel(state: .empty, geoLookup: geocoder , dispatcher: dispatcher)
-        
+        let viewModel = WeatherViewModel(state: .empty, geoLookup: geocoder, dispatcher: dispatcher)
+        viewModel.searchString = "Kingston, Jamaica"
         // Configure expectation
         let expectation = XCTestExpectation(description: "Should Receive Error")
         @Sendable func observe() {
@@ -64,8 +64,7 @@ final class WeatherViewTests: XCTestCase {
         observe()
         viewModel.performSearch()
         wait(for: [expectation], timeout: 1)
-        
-        
+
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         host.overrideUserInterfaceStyle = .light

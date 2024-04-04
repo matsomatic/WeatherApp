@@ -27,11 +27,22 @@
       }
     },
     "Weather Forecast\n%@\n(%@)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Weather Forecast\n%1$@\n(%2$@)"
+          }
+        }
+      }
+    },
+    "Weather Forecast\n%@\n%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Weather Forecast\n%1$@\n%2$@"
           }
         }
       }

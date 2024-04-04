@@ -72,8 +72,15 @@ class WeatherViewModel {
     func dayConfiguration(index: Int) -> WeatherViewConfiguration? {
         if let forecast {
             let day = forecast.dailyData[index]
+            let timeZoneText: String
+            if let timeZone = TimeZone(abbreviation: forecast.timezoneAbbreviation), let timeZoneCode = timeZone.abbreviation(for: Date()) {
+                timeZoneText = "(\(timeZoneCode))"
+            } else {
+                timeZoneText = ""
+            }
+            
             return WeatherViewConfiguration(locationName: lastSearched,
-                                            timeZoneAbbreviation: forecast.timezoneAbbreviation,
+                                            timeZone: timeZoneText,
                                             sunriseTime: day.sunrise,
                                             sunsetTime: day.sunset,
                                             day: day.day)
@@ -85,8 +92,7 @@ class WeatherViewModel {
         if let forecast {
             var result = [HourViewConfiguration]()
             for day in forecast.dailyData {
-            
-                result.append(contentsOf: day.hourlyData.map({ hour in
+                result.append(contentsOf: day.hourlyData.map { hour in
                     let isNight = hour.time.compare(day.sunrise) == .orderedAscending || hour.time.compare(day.sunset) == .orderedDescending
                  
                     return HourViewConfiguration(temperature: hour.temperature,
@@ -97,7 +103,7 @@ class WeatherViewModel {
                                                  windSpeedUnit: forecast.hourlyUnits.windSpeed,
                                                  time: hour.time,
                                                  isNight: isNight)
-                }))
+                })
             }
             return result
         } else {

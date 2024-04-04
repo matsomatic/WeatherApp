@@ -10,7 +10,7 @@ import SwiftUI
 
 struct WeatherViewConfiguration {
     let locationName: String
-    let timeZoneAbbreviation: String
+    let timeZone: String
     let sunriseTime: Date
     let sunsetTime: Date
     let day: Date
@@ -19,7 +19,7 @@ struct WeatherViewConfiguration {
 struct WeatherView: View {
     let viewModel: WeatherViewModel
     @State private var scrollHour: Date?
-    
+
     var body: some View {
         @Bindable var viewModel = viewModel
         VStack {
@@ -42,16 +42,16 @@ struct WeatherView: View {
             .padding()
             .background(in: RoundedRectangle(cornerRadius: 20))
             .backgroundStyle(.linearGradient(colors:
-                                                [Color.temperatureColor(temperature: 40),
-                                                 Color.temperatureColor(temperature: 20)],
-                                             startPoint: UnitPoint(x: 0, y: 1),
-                                             endPoint: UnitPoint(x: 1, y: 0)))
+                [Color.temperatureColor(temperature: 40),
+                 Color.temperatureColor(temperature: 20)],
+                startPoint: UnitPoint(x: 0, y: 1),
+                endPoint: UnitPoint(x: 1, y: 0)))
             getDetialView()
             Spacer()
         }
         .padding()
     }
-    
+
     @ViewBuilder
     func getDetialView() -> some View {
         VStack(alignment: .center) {
@@ -88,7 +88,7 @@ struct WeatherView: View {
                             }
                         }()
                         VStack {
-                            Text("Weather Forecast\n\(dailyData.locationName)\n(\(dailyData.timeZoneAbbreviation))")
+                            Text("Weather Forecast\n\(dailyData.locationName)\n\(dailyData.timeZone)")
                                 .font(.largeTitle)
                                 .multilineTextAlignment(.center)
                             Spacer()
@@ -120,10 +120,10 @@ struct WeatherView: View {
                         .padding()
                         .background(in: RoundedRectangle(cornerRadius: 20))
                         .backgroundStyle(.linearGradient(colors:
-                                                            [Color.temperatureColor(temperature: 20),
-                                                             Color.temperatureColor(temperature: 40)],
-                                                         startPoint: gradientPoints[0],
-                                                         endPoint: gradientPoints[1]))
+                            [Color.temperatureColor(temperature: 20),
+                             Color.temperatureColor(temperature: 40)],
+                            startPoint: gradientPoints[0],
+                            endPoint: gradientPoints[1]))
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(viewModel.hourConfigurations) { hour in
@@ -145,7 +145,7 @@ struct WeatherView: View {
                     Text(String("❌\n Could not find location. Try specifying a place name and country, e.g. \"London, UK\""))
                         .font(.title)
                         .multilineTextAlignment(.center)
-                    
+
                 } else {
                     Text(String("❌\n Could not load forecast. Try again later."))
                         .font(.title)
@@ -155,7 +155,7 @@ struct WeatherView: View {
             }
         }
     }
-    
+
     func getTimeTextFor(date: Date, forecast: Forecast) -> String {
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = "HH:mm"

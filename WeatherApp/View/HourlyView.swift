@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HourViewConfiguration: Identifiable  {
+struct HourViewConfiguration: Identifiable {
     var id: Date { time }
     let temperature: Double
     let temperatureUnit: String
@@ -50,7 +50,7 @@ struct HourlyView: View {
 }
 
 #Preview {
-    HourlyView(configuration: HourViewConfiguration (
+    HourlyView(configuration: HourViewConfiguration(
         temperature: 23.0,
         temperatureUnit: "°C",
         weatherCode: .partlyCloudy,
@@ -59,5 +59,5 @@ struct HourlyView: View {
         windSpeedUnit: "km/h",
         time: Date.distantPast,
         isNight: false)
-               )
+    )
 }

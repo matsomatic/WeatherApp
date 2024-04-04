@@ -121,7 +121,7 @@ final class WeatherViewModelTests: XCTestCase {
         // Setup
         geocoder.coordinate = (1.0, 1.0)
         dispatcher.result = .success(Forecast.forecastData())
-        sut.searchString = "London"
+        sut.searchString = "Kingston, Jamaica"
         
         // Configure expectation
         let expectation = XCTestExpectation(description: "Should Receive Error")
@@ -172,10 +172,10 @@ final class WeatherViewModelTests: XCTestCase {
                 ▿ Optional<WeatherViewConfiguration>
                   ▿ some: WeatherViewConfiguration
                     - day: 2024-03-29T00:00:00Z
-                    - locationName: "London"
+                    - locationName: "Kingston, Jamaica"
                     - sunriseTime: 2024-03-29T06:05:00Z
                     - sunsetTime: 2024-03-29T18:21:00Z
-                    - timeZoneAbbreviation: "EST"
+                    - timeZone: "(GMT-4)"
 
                 """
             }
@@ -184,10 +184,10 @@ final class WeatherViewModelTests: XCTestCase {
                 ▿ Optional<WeatherViewConfiguration>
                   ▿ some: WeatherViewConfiguration
                     - day: 2024-03-30T00:00:00Z
-                    - locationName: "London"
+                    - locationName: "Kingston, Jamaica"
                     - sunriseTime: 2024-03-30T06:04:00Z
                     - sunsetTime: 2024-03-30T18:22:00Z
-                    - timeZoneAbbreviation: "EST"
+                    - timeZone: "(GMT-4)"
 
                 """
             }
