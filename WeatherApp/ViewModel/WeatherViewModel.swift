@@ -73,7 +73,7 @@ class WeatherViewModel {
         if let forecast {
             let day = forecast.dailyData[index]
             let timeZoneText: String
-            if let timeZone = TimeZone(abbreviation: forecast.timezoneAbbreviation), let timeZoneCode = timeZone.abbreviation(for: Date()) {
+            if let timeZone = TimeZone(abbreviation: forecast.timezoneAbbreviation), let timeZoneCode = timeZone.localizedName(for: .shortStandard, locale: Locale(identifier: "en_US")) {
                 timeZoneText = "(\(timeZoneCode))"
             } else {
                 timeZoneText = ""

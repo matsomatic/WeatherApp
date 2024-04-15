@@ -175,7 +175,7 @@ final class WeatherViewModelTests: XCTestCase {
                     - locationName: "Kingston, Jamaica"
                     - sunriseTime: 2024-03-29T06:05:00Z
                     - sunsetTime: 2024-03-29T18:21:00Z
-                    - timeZone: "(GMT-4)"
+                    - timeZone: "(EST)"
 
                 """
             }
@@ -187,7 +187,7 @@ final class WeatherViewModelTests: XCTestCase {
                     - locationName: "Kingston, Jamaica"
                     - sunriseTime: 2024-03-30T06:04:00Z
                     - sunsetTime: 2024-03-30T18:22:00Z
-                    - timeZone: "(GMT-4)"
+                    - timeZone: "(EST)"
 
                 """
             }
