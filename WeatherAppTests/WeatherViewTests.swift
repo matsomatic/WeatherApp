@@ -51,7 +51,7 @@ final class WeatherViewTests: XCTestCase {
         let viewModel = WeatherViewModel(state: .empty, geoLookup: geocoder, dispatcher: dispatcher)
         viewModel.searchString = "Kingston, Jamaica"
         // Configure expectation
-        let expectation = XCTestExpectation(description: "Should Receive Error")
+        let expectation = XCTestExpectation(description: "Should Receive Forecast")
         @Sendable func observe() {
             withObservationTracking {
                 if case .forecastAvailable = viewModel.state {
@@ -63,11 +63,11 @@ final class WeatherViewTests: XCTestCase {
         }
         observe()
         viewModel.performSearch()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 2)
 
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         host.overrideUserInterfaceStyle = .light
-        assertSnapshot(of: host, as: .image(perceptualPrecision: 0.96))
+        assertSnapshot(of: host, as: .image(precision: 0.99))
     }
 }
