@@ -15,16 +15,17 @@ jobs:
       with:
         xcode-version: '15.2'
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Build
       run: |
           xcodebuild test -resultBundlePath TestResults -scheme WeatherApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
     - uses: kishikawakatsumi/xcresulttool@v1
       with:
        path: TestResults.xcresult
-       if: success() || failure()
+       if: always()
     - name: upload
       uses: actions/upload-artifact@v4
       with: 
         name: results
         path: TestResults.xcresult
+        if: always()
