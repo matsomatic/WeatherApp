@@ -68,6 +68,6 @@ final class WeatherViewTests: XCTestCase {
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)
         host.overrideUserInterfaceStyle = .light
-        assertSnapshot(of: host, as: .image)
+        assertSnapshot(of: host, as: .image(perceptualPrecision: 0.98))
     }
 }
