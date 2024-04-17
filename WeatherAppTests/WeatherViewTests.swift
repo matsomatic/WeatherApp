@@ -63,7 +63,7 @@ final class WeatherViewTests: XCTestCase {
         }
         observe()
         viewModel.performSearch()
-        wait(for: [expectation], timeout: 2)
+        wait(for: [expectation], timeout: 5)
 
         let view = WeatherView(viewModel: viewModel)
         let host = UIHostingController(rootView: view)

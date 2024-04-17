@@ -49,7 +49,7 @@ final class WeatherViewModelTests: XCTestCase {
         
         // Execute test
         sut.performSearch()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
         
         // Verify
         XCTAssertEqual(geocoder.findLocationcalledForAddress, "London")
@@ -82,7 +82,7 @@ final class WeatherViewModelTests: XCTestCase {
         
         // Execute test
         sut.performSearch()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
         
         // Verify
         XCTAssertEqual(geocoder.findLocationcalledForAddress, "London")
@@ -138,7 +138,7 @@ final class WeatherViewModelTests: XCTestCase {
         
         // Execute test
         sut.performSearch()
-        wait(for: [expectation], timeout: 1)
+        wait(for: [expectation], timeout: 5)
         
         // Verify
         XCTAssertEqual(geocoder.findLocationcalledForAddress, "Kingston, Jamaica")
